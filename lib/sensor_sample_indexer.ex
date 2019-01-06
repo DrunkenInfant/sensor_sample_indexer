@@ -10,6 +10,7 @@ defmodule SensorSampleIndexer do
     rabbitmq_url = "amqp://localhost:5672"
     rabbitmq_queue = "debug_meas"
     children = [
+      {SensorSampleIndexer.DbConnection, []},
       {RabbitMQ.Connection, [
         timeout: rabbitmq_timeout,
         url: rabbitmq_url,

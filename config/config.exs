@@ -28,3 +28,11 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env()}.exs"
+
+config :sensor_sample_indexer, SensorSampleIndexer.DbConnection,
+  database:  "greenhouse",
+  host: "localhost",
+  pool: [max_overflow: 10, size: 50],
+  port: 8086,
+  scheme: "http",
+  writer: Instream.Writer.Line
