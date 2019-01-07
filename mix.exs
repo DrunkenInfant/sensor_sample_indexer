@@ -24,6 +24,7 @@ defmodule SensorSampleIndexer.MixProject do
     [
       {:amqp, "~> 1.1"},
       {:connection, "~> 1.0.4"},
+      {:distillery, "~> 2.0"},
       {:gen_stage, "~> 0.14"},
       {:instream, "~> 0.18"},
       {:poison, "~> 3.0"},

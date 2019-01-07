@@ -21,6 +21,14 @@ use Mix.Config
 #     config :logger, level: :info
 #
 
+config :sensor_sample_indexer, SensorSampleIndexer.DbConnection,
+  database:  {:system, "INFLUXDB_DATABASE", "greenhouse"},
+  host: {:system, "INFLUXDB_HOST", "localhost"},
+  pool: [max_overflow: 10, size: 50],
+  port: {:system, "INFLUXDB_port", "8086"},
+  scheme: "http",
+  writer: Instream.Writer.Line
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.
@@ -28,11 +36,3 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env()}.exs"
-
-config :sensor_sample_indexer, SensorSampleIndexer.DbConnection,
-  database:  "greenhouse",
-  host: "localhost",
-  pool: [max_overflow: 10, size: 50],
-  port: 8086,
-  scheme: "http",
-  writer: Instream.Writer.Line

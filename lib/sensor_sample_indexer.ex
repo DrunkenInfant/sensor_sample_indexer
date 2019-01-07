@@ -6,9 +6,9 @@ defmodule SensorSampleIndexer do
   """
 
   def start(_type, _args) do
-    rabbitmq_timeout = 60
-    rabbitmq_url = "amqp://localhost:5672"
-    rabbitmq_queue = "debug_meas"
+    {rabbitmq_timeout, _} = Integer.parse(System.get_env("RABBITMQ_TIMEOUT") || "1000")
+    rabbitmq_url = System.get_env("RABBITMQ_URL") || "amqp://localhost"
+    rabbitmq_queue = System.get_env("RABBITMQ_QUEUE") || "sensor_sample_indexer"
     children = [
       {SensorSampleIndexer.DbConnection, []},
       {RabbitMQ.Connection, [
